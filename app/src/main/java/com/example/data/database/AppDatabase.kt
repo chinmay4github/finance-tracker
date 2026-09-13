@@ -8,11 +8,11 @@ import androidx.room.TypeConverters
 import com.example.data.dao.BudgetDao
 import com.example.data.dao.TransactionDao
 import com.example.data.model.BudgetEntity
-import com.example.data.model.TransactionEntity
+import com.example.data.model.Transaction
 
 @Database(
-  entities = [TransactionEntity::class, BudgetEntity::class],
-  version = 1,
+  entities = [Transaction::class, BudgetEntity::class],
+  version = 2,
   exportSchema = false
 )
 @TypeConverters(Converters::class)

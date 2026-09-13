@@ -2,6 +2,7 @@ package com.example.data.database
 
 import androidx.room.TypeConverter
 import com.example.data.model.TransactionType
+import java.util.Date
 
 class Converters {
   @TypeConverter
@@ -16,5 +17,15 @@ class Converters {
     } catch (e: Exception) {
       TransactionType.EXPENSE
     }
+  }
+
+  @TypeConverter
+  fun fromTimestamp(value: Long?): Date? {
+    return value?.let { Date(it) }
+  }
+
+  @TypeConverter
+  fun dateToTimestamp(date: Date?): Long? {
+    return date?.time
   }
 }

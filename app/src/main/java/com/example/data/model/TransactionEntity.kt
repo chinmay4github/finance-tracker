@@ -1,16 +1,14 @@
 package com.example.data.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
 enum class TransactionType {
   EXPENSE,
   INCOME
 }
 
-@Entity(tableName = "transactions")
+/**
+ * High-level domain and UI model for transactions in the finance tracker.
+ */
 data class TransactionEntity(
-  @PrimaryKey(autoGenerate = true)
   val id: Long = 0,
   val title: String,
   val amount: Double,
@@ -19,4 +17,38 @@ data class TransactionEntity(
   val paymentMethod: String,
   val timestamp: Long = System.currentTimeMillis(),
   val note: String = ""
-)
+) {
+  fun toTransaction(): Transaction = Transaction(
+    id = id,
+    amount = if (type == TransactionType.EXPENSE) -kotlin.math.abs(amount) else kotlin.math.abs(amount),
+    category = category,
+    date = timestamp,
+    description = if (note.isNotBlank()) "$title - $note" else title
+  )
+}
+
+fun Transaction.toTransactionEntity(): TransactionEntity {
+  val isExpense = amount < 0
+  val absAmount = kotlin.math.abs(amount)
+  val parsedTitle = if (description.contains(" - ")) {
+    description.substringBefore(" - ").trim()
+  } else {
+    description.ifBlank { category }
+  }
+  val parsedNote = if (description.contains(" - ")) {
+    description.substringAfter(" - ").trim()
+  } else {
+    ""
+  }
+
+  return TransactionEntity(
+    id = id,
+    title = parsedTitle,
+    amount = absAmount,
+    type = if (isExpense) TransactionType.EXPENSE else TransactionType.INCOME,
+    category = category,
+    paymentMethod = "General",
+    timestamp = date,
+    note = parsedNote
+  )
+}
