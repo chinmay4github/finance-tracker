@@ -1,0 +1,57 @@
+# IDE & Editors
+*.iml
+.idea/
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+Thumbs.db
+
+# Build & Gradle Cache
+.build-outputs/
+.gradle/
+.kotlin/
+/build
+app/build
+*/build/
+bin/
+gen/
+out/
+/captures
+.externalNativeBuild
+.cxx
+
+# Local Configuration & Environment Secrets
+.env
+.env.*
+!.env.example
+*.env
+local.properties
+/local.properties
+secrets.properties
+
+# Private Keys, Certificates, and Keystores (DO NOT COMMIT)
+*.jks
+*.keystore
+debug.keystore
+debug.keystore.base64
+*.pem
+*.key
+*.p12
+*.pfx
+*.pkcs12
+private_key*
+*private_key*
+id_rsa*
+*.cert
+*.crt
+
+# Google Cloud & Firebase Service Account Keys
+google-services.json
+service-account*.json
+firebase-adminsdk*.json
+credentials.json
+client_secret*.json

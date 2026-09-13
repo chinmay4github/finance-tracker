@@ -1,0 +1,6 @@
+{
+  "name": "Finance Tracker",
+  "description": "Personal finance manager with Room DB, real-time Google Sheets Apps Script API sync, and automated budget alerts",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
